@@ -18,25 +18,16 @@ include **Ada-Fuzzy-C-Means**, **Ada-K-Means-Clustering**, and
 
 1. **Structure extraction**
    - Build a **KNN** graph (Euclidean).
-   - **Density** per object: $\mathrm{density}(x)=1/\overline{d}(x,\mathrm{KNN}(x))$
-     (mean distance; floor `Distance_Eps` if coincident).
-   - Classify: **CSO** (density strictly higher than all $K$ neighbors),
-     **Outlier** (strictly lower than all neighbors **and** density
-     $<$ `Outlier_Threshold`), else **Rest** (type 3).
+   - **Density** per object: $\mathrm{density}(x)=1/\overline{d}(x,\mathrm{KNN}(x))$ (mean distance; floor `Distance_Eps` if coincident).
+   - Classify: **CSO** (density strictly higher than all $K$ neighbors), **Outlier** (strictly lower than all neighbors **and** density $<$ `Outlier_Threshold`), else **Rest** (type 3).
 
 2. **Local approximation of fuzzy memberships**
-   - $M=\#\mathrm{CSOs}+1$ (extra column = outlier group).
-   - Init: each CSO has fixed membership $1$ to its cluster; outliers fixed
-     $1$ to the outlier group; type-3 equal $1/M$ to all columns.
+   - $M =$ #CSOs $+ 1$ (extra column = outlier group).
+   - Init: each CSO has fixed membership $1$ to its cluster; outliers fixed $1$ to the outlier group; type-3 equal $1/M$ to all columns.
    - Iterate until convergence (Jacobi):
-     $$
-     \mathbf{p}^{t+1}(x)=\sum_{y\in N(x)} w_{xy}\,\mathbf{p}^{t}(y)
-     $$
-     with $\sum w_{xy}=1$ and **inverse-distance** weights
-     $w_{xy}\propto 1/(d_{xy}+\varepsilon)$.  CSOs/outliers stay fixed.
-   - This drives **NAE**
-     $E=\sum_{x\in X}\|\mathbf{p}(x)-\sum_y w_{xy}\mathbf{p}(y)\|^2$
-     toward zero.
+     $\mathbf{p}^{t+1}(x)=\sum_{y\in N(x)} w_{xy}\,\mathbf{p}^{t}(y)$
+     with $\sum w_{xy}=1$ and **inverse-distance** weights $w_{xy}\propto 1/(d_{xy}+\varepsilon)$. CSOs/outliers stay fixed.
+   - This drives **NAE** $E=\sum_{x\in X}\|\mathbf{p}(x)-\sum_y w_{xy}\mathbf{p}(y)\|^2$ toward zero.
 
 3. **Cluster construction**
    - **Hard** (one-to-one): $\arg\max$ membership (`Hard_Labels_From_Memberships`).
