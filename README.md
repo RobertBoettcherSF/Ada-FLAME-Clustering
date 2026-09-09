@@ -42,12 +42,12 @@ create a CSO or outlier versus that neighbor (strict inequalities).
 | --- | --- | --- |
 | Caps | `Max_Points`, `Max_Dims`, `Max_K_Neighbors`, `Max_Clusters` | Fixed educational limits |
 | Types | `Dataset`, `Densities`, `Object_Kind`, `KNN_Graph`, `Membership_Matrix`, `Labels`, `Assignment_Matrix`, `Parameters`, `Flame_Result` | Domain |
-| Geometry | `Distance`, `Squared_Distance`, `Extract_Point`, `Near` | \(L_2\) helpers |
+| Geometry | `Distance`, `Squared_Distance`, `Extract_Point`, `Near` | $L_2$ helpers |
 | Step 1 | `Build_KNN`, `Estimate_Densities`, `Classify_Objects` | Structure |
 | Step 2 | `Init_Memberships`, `Neighborhood_Weights`, `Neighborhood_Approximation_Error`, `Approximate_Memberships` | NAE iteration |
 | Step 3 | `Hard_Labels_From_Memberships`, `Threshold_Assign` | Crisp / soft assign |
 | Driver | `Run_FLAME`, `Count_CSOs`, `Max_Membership_Delta` | Full pipeline |
-| Errors | `Invalid_Argument`, `Capacity_Exceeded` | Bad \(K\), shapes, caps |
+| Errors | `Invalid_Argument`, `Capacity_Exceeded` | Bad $K$, shapes, caps |
 
 `Parameters`: `K`, `Outlier_Threshold`, `Max_Iters`, `Eps`, `Assign_Threshold`.
 
